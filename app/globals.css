@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #0b0f19;
+  --color-foreground: #e2e8f0;
+  --color-surface: #111827;
+  --color-surface-alt: #0f172a;
+  --color-accent: #38bdf8;
+  --color-accent-muted: #1e3a5f;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-border: #1e293b;
+  --color-border-subtle: #1a2332;
+  --color-glow: rgba(56, 189, 248, 0.08);
+  --font-sans:
+    var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system,
+    sans-serif;
+}
+
+/* === Base === */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #1e293b transparent;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.2);
+  color: #f1f5f9;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 999px;
+}
+
+/* === Utilities === */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-text-reveal {
+  animation: text-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-expand-line {
+  animation: expand-line 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+  width: 0;
+}
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes expand-line {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.soft-glow {
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.06),
+    0 0 80px rgba(56, 189, 248, 0.03);
+}
+
+.section-fade {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(17, 24, 39, 0.3) 50%,
+    transparent
+  );
+}
+
+.hover-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Divider */
+.organic-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #1e293b 30%,
+    #2d3a4f 50%,
+    #1e293b 70%,
+    transparent
+  );
+}
+
+/* Nav link styles */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+  border-radius: 999px;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Chip */
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  border-radius: 999px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.08);
+  color: #94a3b8;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.skill-chip:hover {
+  background: rgba(56, 189, 248, 0.08);
+  color: #e2e8f0;
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+/* Tab */
+.tab-btn {
+  padding: 8px 20px;
+  font-size: 0.875rem;
+  border-radius: 999px;
+  color: #64748b;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+}
+.tab-btn:hover {
+  color: #94a3b8;
+}
+.tab-btn.active {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.15);
+}
