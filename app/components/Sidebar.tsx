@@ -155,95 +155,100 @@ export default function Sidebar() {
       </div>
 
       {/* Desktop Sidebar — Seamless Column Layout */}
-      <aside className="hidden lg:flex flex-col justify-between sticky top-24 h-[calc(100vh-192px)] w-[280px] shrink-0 z-40">
-        <div>
-          {/* Identity */}
-          <div className="mb-12">
-            {/* Profile Image with glow */}
-            <div className="relative w-[88px] h-[88px] mb-6">
-              <div className="absolute -inset-1 rounded-full bg-linear-to-br from-accent/30 via-[#818cf8]/20 to-[#a78bfa]/30 blur-sm" />
-              <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-accent/15 bg-background">
-                <Image
-                  src="/logo.png"
-                  alt="Adla Fayyaz"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Online indicator with tooltip */}
-              <div className="absolute bottom-1 right-1 group cursor-help z-50">
-                <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-[3px] ring-background" />
-                <div className="absolute left-1/2 bottom-full mb-2 -translate-x-1/2 px-2.5 py-1.5 bg-surface border border-border-subtle rounded-lg text-[11px] font-medium text-text-primary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-sm">
-                  Available for opportunities
+      <aside className="hidden lg:block sticky top-24 h-[calc(100vh-192px)] w-[280px] shrink-0 z-40">
+        {/* Expanded scroll container to prevent top/left/right clipping of the glow */}
+        <div className="h-[calc(100%+32px)] w-[calc(100%+32px)] -m-4 pt-4 px-4 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex flex-col min-h-full justify-between pb-4">
+            <div className="flex flex-col shrink-0">
+              {/* Identity */}
+              <div className="mb-8">
+                {/* Profile Image with glow */}
+                <div className="relative w-[84px] h-[84px] mb-5">
+                  <div className="absolute -inset-1 rounded-full bg-linear-to-br from-accent/30 via-[#818cf8]/20 to-[#a78bfa]/30 blur-sm" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-accent/15 bg-background">
+                    <Image
+                      src="/logo.png"
+                      alt="Adla Fayyaz"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Online indicator with tooltip */}
+                  <div className="absolute bottom-1 right-1 group cursor-help z-50">
+                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-[3px] ring-background" />
+                    <div className="absolute left-1/2 bottom-full mb-2 -translate-x-1/2 px-2.5 py-1.5 bg-surface border border-border-subtle rounded-lg text-[11px] font-medium text-text-primary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-sm">
+                      Available for opportunities
+                    </div>
+                  </div>
                 </div>
+
+                {/* Name & role */}
+                <h1 className="text-2xl font-bold text-text-primary tracking-tight mb-1.5 align-middle">
+                  Adla Fayyaz
+                </h1>
+                <p className="text-[14px] text-text-secondary leading-relaxed mb-3">
+                  {personalInfo.title}
+                </p>
+
+                {/* Location Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/40 border border-border-subtle w-max mb-5 hover:border-accent/40 transition-colors duration-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[12px] font-medium text-text-secondary tracking-wide">
+                    Tangerang, Indonesia
+                  </span>
+                </div>
+
+                <p className="text-[13px] text-text-muted/70 italic leading-relaxed pl-3 border-l-2 border-accent/20">
+                  {personalInfo.tagline}
+                </p>
               </div>
+
+              {/* Navigation - Larger font per request */}
+              <nav className="flex flex-col gap-1.5">
+                {navItems.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollTo(item.label)}
+                    className={`group flex items-center gap-3.5 text-left py-3 px-5 rounded-xl transition-all duration-300 ${
+                      activeSection === item.label
+                        ? "text-accent bg-accent/10 shadow-sm shadow-accent/5"
+                        : "text-text-muted hover:text-text-secondary hover:bg-white/5"
+                    }`}
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`transition-colors duration-300 ${
+                        activeSection === item.label
+                          ? "text-accent"
+                          : "text-text-muted/60 group-hover:text-text-secondary"
+                      }`}
+                    >
+                      <path d={item.icon} />
+                    </svg>
+                    <span className="text-[16px] font-semibold tracking-wide">
+                      {item.label}
+                    </span>
+                  </button>
+                ))}
+              </nav>
             </div>
 
-            {/* Name & role */}
-            <h1 className="text-2xl font-bold text-text-primary tracking-tight mb-1.5 align-middle">
-              Adla Fayyaz
-            </h1>
-            <p className="text-[14px] text-text-secondary leading-relaxed mb-3">
-              {personalInfo.title}
-            </p>
-
-            {/* Location Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/40 border border-border-subtle w-max mb-5 hover:border-accent/40 transition-colors duration-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[12px] font-medium text-text-secondary tracking-wide">
-                Tangerang, Indonesia
-              </span>
+            {/* Footer */}
+            <div className="mt-8 text-[11px] text-text-muted/40 tracking-wide shrink-0">
+              <p>© 2026 adlafayyaz</p>
+              <p className="mt-1">Designed & built with passion</p>
             </div>
-
-            <p className="text-[13px] text-text-muted/70 italic leading-relaxed pl-3 border-l-2 border-accent/20">
-              {personalInfo.tagline}
-            </p>
           </div>
-
-          {/* Navigation - Larger font per request */}
-          <nav className="flex flex-col gap-1.5">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollTo(item.label)}
-                className={`group flex items-center gap-3.5 text-left py-3.5 px-5 rounded-xl transition-all duration-300 ${
-                  activeSection === item.label
-                    ? "text-accent bg-accent/10 shadow-sm shadow-accent/5"
-                    : "text-text-muted hover:text-text-secondary hover:bg-white/5"
-                }`}
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className={`transition-colors duration-300 ${
-                    activeSection === item.label
-                      ? "text-accent"
-                      : "text-text-muted/60 group-hover:text-text-secondary"
-                  }`}
-                >
-                  <path d={item.icon} />
-                </svg>
-                <span className="text-[16px] font-semibold tracking-wide">
-                  {item.label}
-                </span>
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-12 text-[11px] text-text-muted/40 tracking-wide">
-          <p>© 2026 adlafayyaz</p>
-          <p className="mt-1">Designed & built with passion</p>
         </div>
       </aside>
     </>
