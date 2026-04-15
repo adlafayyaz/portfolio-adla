@@ -74,7 +74,16 @@ export const projects: Record<ProjectCategory, ProjectItem[]> = {
         "https://www.canva.com/design/DAGqnATJ9aQ/Cb1nW6EYry8o7rShRnA2BA/view?utm_content=DAGqnATJ9aQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h655111bf37",
     },
   ],
-  "Mobile Development": [],
+  "Mobile Development": [
+    {
+      title: "MoMo",
+      description: "A minimalist mobile app for renting and sharing vehicles. Built with Kotlin and Android Studio, MoMo offers a seamless user experience for finding, booking, and managing vehicle rentals. The app features a clean interface, real-time availability updates, and secure payment integration, making it the go-to solution for hassle-free vehicle sharing.",
+      techStack: ["Kotlin", "Android Studio"],
+      image: "/projects/momo-banner.png",
+      githubUrl: "https://github.com/adlafayyaz/MoMo",
+      downloadUrl: "https://play.google.com/store/apps/details?id=com.adlafayyaz.momo",
+    }
+  ],
   "Web Development": [
     {
       title: "CARDENZA",
