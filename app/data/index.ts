@@ -81,7 +81,7 @@ export const projects: Record<ProjectCategory, ProjectItem[]> = {
       techStack: ["Kotlin", "Android Studio"],
       image: "/projects/momo-banner.png",
       githubUrl: "https://github.com/adlafayyaz/MoMo",
-      downloadUrl: "https://play.google.com/store/apps/details?id=com.adlafayyaz.momo",
+      downloadUrl: "https://drive.google.com/file/d/1hqfvAfFOudElJQw8DmfjOjCJ65UXoaPD/view?usp=sharing",
     }
   ],
   "Web Development": [
@@ -110,6 +110,14 @@ export const projects: Record<ProjectCategory, ProjectItem[]> = {
       image: "/projects/prambanantemple-banner.png",
       githubUrl: "https://github.com/adlafayyaz/Prambanan-Temple",
       liveUrl: "https://prambanan-temple.vercel.app/",
+    },
+    {
+      title: "Amsekon Indonesia Grup",
+      description:
+        "Lorem",
+      techStack: ["NextJS, Typescript, TailwindCSS"],
+      image: "/projects/amsekon-banner.png",
+      liveUrl: "amsekonindogrup.com",
     },
   ],
 };
